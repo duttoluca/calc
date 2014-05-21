@@ -1,6 +1,6 @@
-from django.conf.urls import patterns, include, url
+from django.conf.urls import patterns, url
 
-from accert.views import calcola
+from accert.views import calcolaAccert
 
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
@@ -16,5 +16,5 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     # url(r'^admin/', include(admin.site.urls)),
-    url(r'^calcola/$', calcola, name='calcola'),
+    url(r'^accert/$', calcolaAccert, name='calcolaAccert'),
 )
