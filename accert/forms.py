@@ -5,7 +5,7 @@ from django import forms
 
 class AccertamentoForm(forms.Form):
     tassa = forms.FloatField(label='Tassa',
-                             min_value=0.0)
+                             min_value=0.01)
     versato = forms.FloatField(label='Importo Versato',
                                initial=0.0,
                                min_value=0.0)
