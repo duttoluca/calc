@@ -14,7 +14,7 @@ class AccertamentoForm(forms.Form):
                                    input_formats=['%d/%m/%Y'],
                                    initial=date.today(),
                                    required=False)
-    flag_sprint = forms.BooleanField(label='Emissione prima del...',
+    flag_sprint = forms.BooleanField(label='Accertamento emesso prima del 06/07/2011',
                                      required=False)
 
 
