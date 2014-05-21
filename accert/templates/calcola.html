@@ -5,7 +5,7 @@
 {% block main %}
 <h1>CALCOLO IMPORTI</h1>
 
-<form action={% url "calcola" %} method="post">{% csrf_token %}
+<form action={% url "calcolaAccert" %} method="post">{% csrf_token %}
 {{ form.as_p }}
 <input type="submit" value="Submit" />
 </form>
