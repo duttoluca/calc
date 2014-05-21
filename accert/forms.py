@@ -4,9 +4,11 @@ from django import forms
 
 
 class AccertamentoForm(forms.Form):
-    tassa = forms.FloatField(label='Tassa')
+    tassa = forms.FloatField(label='Tassa',
+                             min_value=0.01)
     versato = forms.FloatField(label='Importo Versato',
-                               initial=0.0)
+                               initial=0.0,
+                               min_value=0.0)
     ugup = forms.DateField(label='UGUP', input_formats=['%d/%m/%Y'])
     data_pagamento = forms.DateField(label='Data Pagamento',
                                      input_formats=['%d/%m/%Y'])

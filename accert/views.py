@@ -35,10 +35,10 @@ def calcolaAccert(request):
             elif tassa == versato and data_pagamento > ugup:
                 i = round((tassa / 100) * 1.375 * trunc((anni_pagamento * 12 + mesi_pagamento) / 6), 2)
                 tipo = 2
-            elif tassa > versato and data_pagamento <= ugup:
+            elif tassa > versato and versato > 0 and data_pagamento <= ugup:
                 i = round((t / 100) * 1.375 * trunc((anni_calcolo * 12 + mesi_calcolo) / 6), 2)
                 tipo = 3
-            elif tassa > versato and data_pagamento > ugup and data_calcolo is not None:
+            elif tassa > versato and versato > 0 and data_pagamento > ugup and data_calcolo is not None:
                 i = round(((t / 100) * 1.375 * trunc((anni_calcolo * 12 + mesi_calcolo) / 6)) + ((tassa / 100) * 1.375 * trunc((anni_pagamento * 12 + mesi_pagamento) / 6)), 2)
                 tipo = 4
             else:

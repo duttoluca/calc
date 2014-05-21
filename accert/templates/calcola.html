@@ -1,24 +1,36 @@
 {% extends 'layouts/base.html' %}
 
-{% block page_title %}TEST | {{  block.super }}{% endblock %}
-
 {% block main %}
-<h1>CALCOLO IMPORTI</h1>
-
-<form action={% url "calcolaAccert" %} method="post">{% csrf_token %}
-{{ form.as_p }}
-<input type="submit" value="Submit" />
-</form>
+<div class="row">
+	<div class="col-md-4">
+  		<form action={% url "calcolaAccert" %} method="post">{% csrf_token %}
+			{{ form.as_p }}
+			<input type="submit" value="Submit" />
+		</form>		
+	</div>
+</div>
+<div class="row"></div>
 
 {% if error %}
-ERRORE NEI DATI INSERITI
+<div class="row">
+	<div class="col-md-8">
+  		<h3>ERRORE</h3>
+  		<p class="text-left">I dati inseriti non permettono il calcolo per nessuna casistica prevista</p>
+	</div>
+</div>
 {% endif %}
 
 {% if data %}
-TASSA: {{ data.tassa|floatformat:2 }}</br>
-INTERESSE: {{ data.interesse|floatformat:2 }}</br>
-SANZIONE: {{ data.sanzione|floatformat:2 }}</br>
-<!-- TOTALE: {{ data.totale|floatformat:2 }}</br> -->
+<div class="row">
+	<div class="col-md-8">
+		<h3>Risultato</h3>
+  		<ul class="list-unstyled">
+  			<li>TASSA: {{ data.tassa|floatformat:2 }}</li>
+  			<li>INTERESSE: {{ data.interesse|floatformat:2 }}</li>
+  			<li>SANZIONE: {{ data.sanzione|floatformat:2 }}</li>
+  		</ul>
+	</div>
+</div>
 {% endif %}
 
 {% endblock %}
