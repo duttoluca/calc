@@ -20,10 +20,11 @@ def calcolaAccert(request):
             flag_sprint = form.cleaned_data['flag_sprint']
             #calcolo giorni/mesi/anni relativamente al pagamento
             giorni_pagamento = (data_pagamento - ugup).days
-            rel_pag = relativedelta(data_pagamento, ugup)
+            # per il calcolo dei mesi uso ugup + 1 giorno
+            rel_pag = relativedelta(data_pagamento, ugup + relativedelta(days=+1))
             mesi_pagamento, anni_pagamento = rel_pag.months, rel_pag.years
-            #calcolo mesi/anni relativamente al calcolo
-            rel_calc = relativedelta(data_calcolo, ugup)
+            #calcolo mesi/anni relativamente al calcolo usando ugup + 1
+            rel_calc = relativedelta(data_calcolo, ugup + relativedelta(days=+1))
             mesi_calcolo, anni_calcolo = rel_calc.months, rel_calc.years
             # return dati_calcolati
             t, i, s = tassa - versato, 0, 0
@@ -45,7 +46,9 @@ def calcolaAccert(request):
                 return render(request, template, {'form': form, 'error': True})
             # calcolo sanzioni
             if not flag_sprint and giorni_pagamento <= 14:
-                if tipo != 3:
+                if tipo == 4:
+                    s = round(((versato / 100) * (giorni_pagamento * 2)) + ((t / 100) * 30), 2)
+                elif tipo != 3:
                     s = round((tassa / 100) * (giorni_pagamento * 2), 2)
                 else:
                     s = round((t / 100) * (giorni_pagamento * 2), 2)
