@@ -45,7 +45,7 @@ def calcolaAccert(request):
                 #errore nella casistica, gestire
                 return render(request, template, {'form': form, 'error': True})
             # calcolo sanzioni
-            if not flag_sprint and giorni_pagamento <= 14:
+            if not flag_sprint and 1 <= giorni_pagamento <= 14:
                 if tipo == 4:
                     s = round(((versato / 100) * (giorni_pagamento * 2)) + ((t / 100) * 30), 2)
                 elif tipo != 3:
