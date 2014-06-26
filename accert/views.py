@@ -43,7 +43,12 @@ def calcolaAccert(request):
                 tipo = 4
             else:
                 #errore nella casistica, gestire
-                return render(request, template, {'form': form, 'error': True})
+                error = {}
+                if versato > tassa:
+                    error['importo'] = True
+                else:
+                    error['generic'] = True
+                return render(request, template, {'form': form, 'error': error})
             # calcolo sanzioni
             if not flag_sprint and 1 <= giorni_pagamento <= 14:
                 if tipo == 4:

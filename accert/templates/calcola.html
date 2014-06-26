@@ -2,7 +2,7 @@
 
 {% block main %}
 <div class="row">
-	<div class="col-md-4">
+	<div class="col-md-8">
   		<form action={% url "calcolaAccert" %} method="post">{% csrf_token %}
 			{{ form.as_p }}
 			<input type="submit" value="Calcola" />
@@ -15,7 +15,11 @@
 <div class="row">
 	<div class="col-md-8">
   		<h3>ERRORE</h3>
+  		{% if error.generic %}
   		<p class="text-left">I dati inseriti non permettono il calcolo per nessuna casistica prevista</p>
+  		{% elif error.importo %}
+  		<p class="text-left">L'importo versato è maggiore della tassa inserita</p>
+  		{% endif %}
 	</div>
 </div>
 {% endif %}
