@@ -18,7 +18,8 @@
   		{% if error.generic %}
   		<p class="text-left">I dati inseriti non permettono il calcolo per nessuna casistica prevista</p>
   		{% elif error.importo %}
-  		<p class="text-left">L'importo versato è maggiore della tassa inserita</p>
+  		<p class="text-left">L'importo versato è maggiore della tassa inserita.<br>
+  		Valorizzare il campo <strong>Somma Importi Versati</strong> con il medesimo valore indicato nel campo <strong>Tassa</strong>, l&rsquo;importo versato in eccedenza dovrà essere detratto dalle sanzioni e dagli interessi ancora dovuti.</p>
   		{% endif %}
 	</div>
 </div>
